@@ -4,7 +4,7 @@ import profilePhoto from '@/assets/Arunprakash.S CS.jpg';
 const HeroSection = () => {
   const handleDownloadResume = () => {
     // This would link to an actual resume PDF
-    window.open('/public/resume/Arunprakash-cv-Resume.pdf', '_blank');
+    window.open('/resume/Arunprakash-cv-Resume.pdf', '_blank');
   };
 
   const socialLinks = [

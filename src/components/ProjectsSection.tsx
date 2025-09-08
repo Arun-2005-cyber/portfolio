@@ -105,77 +105,76 @@ const ProjectsSection = () => {
         </div>
 
         {/* Major Projects */}
-<div className="grid lg:grid-cols-2 gap-8 mb-16">
-  {majorProjects.map((project, index) => (
-    <div
-      key={project.title}
-      className={`card-project fade-in-up group ${
-        index === majorProjects.length - 1 ? "lg:col-span-2 lg:mx-auto max-w-2xl" : ""
-      }`}
-      style={{ animationDelay: `${index * 0.2}s` }}
-    >
-      <div className="flex items-start gap-4 mb-6">
-        <div className={`p-3 bg-${project.color} rounded-lg shadow-medium group-hover:shadow-glow transition-all duration-300`}>
-          <project.icon size={28} className="text-white" />
-        </div>
-        <div className="flex-1">
-          <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors duration-300">
-            {project.title}
-          </h3>
-          <p className="text-muted-foreground mb-4">
-            {project.description}
-          </p>
-        </div>
-      </div>
-
-      <div className="mb-6">
-        <h4 className="font-semibold mb-3 text-foreground">Key Features:</h4>
-        <ul className="space-y-2">
-          {project.features.map((feature, featureIndex) => (
-            <li key={featureIndex} className="flex items-center gap-2 text-muted-foreground">
-              <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-              {feature}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="mb-6">
-        <div className="flex flex-wrap gap-2">
-          {project.technologies.map((tech) => (
-            <span
-              key={tech}
-              className="skill-badge text-sm"
+        <div className="grid lg:grid-cols-2 gap-8 mb-16">
+          {majorProjects.map((project, index) => (
+            <div
+              key={project.title}
+              className={`card-project fade-in-up group ${index === majorProjects.length - 1 ? "lg:col-span-2 lg:mx-auto max-w-2xl" : ""
+                }`}
+              style={{ animationDelay: `${index * 0.2}s` }}
             >
-              {tech}
-            </span>
+              <div className="flex items-start gap-4 mb-6">
+                <div className={`p-3 bg-${project.color} rounded-lg shadow-medium group-hover:shadow-glow transition-all duration-300`}>
+                  <project.icon size={28} className="text-white" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                  <p className="text-muted-foreground mb-4">
+                    {project.description}
+                  </p>
+                </div>
+              </div>
+
+              <div className="mb-6">
+                <h4 className="font-semibold mb-3 text-foreground">Key Features:</h4>
+                <ul className="space-y-2">
+                  {project.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-center gap-2 text-muted-foreground">
+                      <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mb-6">
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="skill-badge text-sm"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline flex items-center gap-2 flex-1 justify-center"
+                >
+                  <Github size={20} />
+                  GitHub
+                </a>
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-hero flex items-center gap-2 flex-1 justify-center"
+                >
+                  <ExternalLink size={20} />
+                  Live Demo
+                </a>
+              </div>
+            </div>
           ))}
         </div>
-      </div>
-
-      <div className="flex gap-4">
-        <a
-          href={project.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-outline flex items-center gap-2 flex-1 justify-center"
-        >
-          <Github size={20} />
-          GitHub
-        </a>
-        <a
-          href={project.demo}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-hero flex items-center gap-2 flex-1 justify-center"
-        >
-          <ExternalLink size={20} />
-          Live Demo
-        </a>
-      </div>
-    </div>
-  ))}
-</div>
 
 
         {/* Mini Projects */}

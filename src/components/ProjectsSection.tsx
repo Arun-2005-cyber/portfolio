@@ -33,8 +33,25 @@ const ProjectsSection = () => {
       color: 'tech-green',
       github: 'https://github.com/Arun-2005-cyber/Major-Project-2--Social-media-app-MERN-Stack-',
       demo: 'http://socia-media.netlify.app'
+    },
+    {
+      title: 'Electricity Board Applicants',
+      description: 'A platform for managing electricity board applications with user-friendly interfaces and secure authentication.',
+      features: [
+        'User Registration & Login',
+        'Application Status Tracking',
+        'Document Upload & Verification',
+        'Admin Dashboard for Application Management',
+        'Email Notifications'
+      ],
+      technologies: ['React', 'Django.js', 'SQL'],
+      icon: Zap,
+      color: 'tech-blue',
+      github: 'https://github.com/Arun-2005-cyber/Major-Project-3--Electricity-Board-Applicants',
+      demo: 'http://electricboard.netlify.app'
     }
   ];
+
 
   const miniProjects = [
     {

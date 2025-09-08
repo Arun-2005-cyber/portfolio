@@ -26,14 +26,14 @@ const HeroSection = () => {
   ];
 
   return (
-    
+
     <section id="hero" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-accent/20 to-muted/30 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-20"></div>
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          
+
           {/* Content */}
           <div className="text-center lg:text-left fade-in-left">
             <div className="mb-6">
@@ -45,7 +45,7 @@ const HeroSection = () => {
                 Full Stack Developer
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                I am a passionate Full Stack Developer with a strong interest in building 
+                I am a passionate Full Stack Developer with a strong interest in building
                 scalable web applications and solving real-world problems through technology.
               </p>
             </div>
@@ -58,7 +58,6 @@ const HeroSection = () => {
                 <Download size={20} />
                 Download Resume
               </button>
-          
             </div>
 
             {/* Social Links */}
@@ -72,9 +71,9 @@ const HeroSection = () => {
                   className="p-3 bg-card/80 backdrop-blur-sm rounded-lg shadow-soft hover:shadow-glow hover:bg-card transition-all duration-300 hover:-translate-y-2 hover:scale-110 group border border-border/30 hover:border-primary/50"
                   aria-label={social.label}
                 >
-                  <social.icon 
-                    size={24} 
-                    className="text-secondary group-hover:text-primary transition-colors duration-300" 
+                  <social.icon
+                    size={24}
+                    className="text-secondary group-hover:text-primary transition-colors duration-300"
                   />
                 </a>
               ))}

@@ -47,7 +47,7 @@ const ProjectsSection = () => {
       technologies: ['React', 'Django.js', 'SQL'],
       icon: Zap,
       color: 'tech-blue',
-      github: 'https://github.com/Arun-2005-cyber/Major-Project-3--Electricity-Board-Applicants',
+      github: 'https://github.com/Arun-2005-cyber/Mini-Project-13-Electricity-Board-Applicants-DJNGO',
       demo: 'http://electricboard.netlify.app'
     }
   ];

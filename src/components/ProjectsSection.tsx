@@ -38,11 +38,11 @@ const ProjectsSection = () => {
       title: 'Electricity Board Applicants',
       description: 'A platform for managing electricity board applications with user-friendly interfaces and secure authentication.',
       features: [
-        'User Registration & Login',
-        'Application Status Tracking',
-        'Document Upload & Verification',
-        'Admin Dashboard for Application Management',
-        'Email Notifications'
+        'User Login',
+        'Pagination for Applicant List',
+        'Visualization of Applicants Data',
+        'Search & Filter by Date Functionality',
+  
       ],
       technologies: ['React', 'Django.js', 'SQL'],
       icon: Zap,

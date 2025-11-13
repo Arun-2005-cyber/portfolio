@@ -1,18 +1,25 @@
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const nodemailer = require('nodemailer');
-require('dotenv').config();
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
+// ✅ Proper CORS setup for both local + Netlify
 app.use(cors({
   origin: ['http://localhost:3000', 'https://arun-sportfolio.netlify.app'],
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
 }));
 
 app.use(bodyParser.json());
+
+// ✅ Handle preflight requests explicitly
+app.options('*', cors());
 
 app.post('/api/contact', async (req, res) => {
   const { name, email, subject, message } = req.body;
@@ -22,26 +29,23 @@ app.post('/api/contact', async (req, res) => {
   }
 
   try {
-    let transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST,
-      port: process.env.EMAIL_PORT,
-      secure: false,
+    const transporter = nodemailer.createTransport({
+      service: 'gmail', // change if using Outlook/Yahoo
       auth: {
-        user: process.env.EMAIL_HOST_USER,
-        pass: process.env.EMAIL_HOST_PASSWORD,
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
-
     const mailOptions = {
-      from: email,
+      from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
       subject: `New message from ${name}: ${subject}`,
       text: `${message}\n\nContact email: ${email}`,
     };
 
     await transporter.sendMail(mailOptions);
-    res.json({ success: true });
+    res.json({ success: true, message: 'Email sent successfully!' });
   } catch (error) {
     console.error('Error sending email:', error);
     res.status(500).json({ success: false, error: 'Failed to send email' });
@@ -49,5 +53,5 @@ app.post('/api/contact', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`✅ Server running on http://localhost:${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });

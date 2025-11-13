@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { 
-  Code, 
-  FileText, 
-  Database, 
-  Globe, 
-  Layers, 
-  Zap, 
-  GitBranch, 
-  Palette, 
-  MessageSquare, 
+import {
+  Code,
+  FileText,
+  Database,
+  Globe,
+  Layers,
+  Zap,
+  GitBranch,
+  Palette,
+  MessageSquare,
   Settings,
   Monitor,
   Server
@@ -45,7 +45,9 @@ const SkillsSection = () => {
         { name: 'Git', icon: GitBranch },
         { name: 'Bootstrap', icon: Palette },
         { name: 'Socket.io', icon: MessageSquare },
-        { name: 'REST APIs', icon: Globe }
+        { name: 'REST APIs', icon: Globe },
+        { name: 'VS Code', icon: Code }
+
       ]
     }
   ];
@@ -59,6 +61,10 @@ const SkillsSection = () => {
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Proficient in modern web technologies and development tools
+          </p>
+
+          <p className="text-base text-muted-foreground mt-4 max-w-2xl mx-auto">
+            Full Stack Developer skilled in building responsive and scalable web applications using React, Node.js, Express, and MongoDB.
           </p>
         </div>
 
@@ -77,7 +83,7 @@ const SkillsSection = () => {
                   {category.title}
                 </h3>
               </div>
-              
+
               <div className="grid grid-cols-2 gap-4">
                 {category.skills.map((skill) => (
                   <div
@@ -87,13 +93,12 @@ const SkillsSection = () => {
                     onMouseLeave={() => setHoveredSkill(null)}
                   >
                     <div className="p-3 bg-gradient-to-r from-primary/20 to-primary-light/20 rounded-full mb-3 group-hover:from-primary/30 group-hover:to-primary-light/30 transition-all duration-300">
-                      <skill.icon 
-                        size={28} 
-                        className={`transition-all duration-300 ${
-                          hoveredSkill === skill.name 
-                            ? 'text-primary scale-110' 
-                            : 'text-primary/70'
-                        }`} 
+                      <skill.icon
+                        size={28}
+                        className={`transition-all duration-300 ${hoveredSkill === skill.name
+                          ? 'text-primary scale-125 drop-shadow-glow'
+                          : 'text-primary/70'
+                          }`}
                       />
                     </div>
                     <span className="font-semibold text-foreground text-sm text-center group-hover:text-primary transition-colors duration-300">
@@ -110,7 +115,7 @@ const SkillsSection = () => {
         <div className="mt-16 fade-in-up">
           <div className="card-professional">
             <h3 className="text-2xl font-bold mb-6 text-center text-primary">
-              All Technologies
+              Core Technologies
             </h3>
             <div className="flex flex-wrap gap-3 justify-center">
               {['React', 'Node.js', 'Django', 'MongoDB', 'Redux', 'HTML/CSS', 'JavaScript', 'Socket.io', 'Bootstrap', 'Git', 'Express.js', 'REST APIs'].map((skill) => (

@@ -7,7 +7,11 @@ require('dotenv').config();
 const app = express();
 const PORT = 5000;
 
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://arun-sportfolio.netlify.app'],
+  methods: ['GET', 'POST'],
+}));
+
 app.use(bodyParser.json());
 
 app.post('/api/contact', async (req, res) => {
@@ -19,12 +23,15 @@ app.post('/api/contact', async (req, res) => {
 
   try {
     let transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: process.env.EMAIL_HOST,
+      port: process.env.EMAIL_PORT,
+      secure: false,
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: process.env.EMAIL_HOST_USER,
+        pass: process.env.EMAIL_HOST_PASSWORD,
       },
     });
+
 
     const mailOptions = {
       from: email,

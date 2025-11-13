@@ -4,32 +4,36 @@ import cors from 'cors';
 import contactRoutes from './Routes/contact.js';
 
 dotenv.config();
-
 const app = express();
 
-// ✅ Middlewares
 app.use(express.json());
 
-// ✅ Allow frontend to call backend (CORS)
+// ✅ Fix: exact URL without trailing slash
+const allowedOrigins = [
+  'https://arun-sportfolio.netlify.app',
+  'http://localhost:3000'
+];
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || '*', // or your React site URL on Render
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: ['GET', 'POST'],
+    credentials: true,
   })
 );
 
-// ✅ API Routes
+// Routes
 app.use('/api/contact', contactRoutes);
 
-// ✅ Default route
 app.get('/', (req, res) => {
-  res.send('Portfolio Backend is Running 🚀');
+  res.send('Portfolio backend running 🚀');
 });
 
-// ✅ Set PORT
 const PORT = process.env.PORT || 5000;
-
-// ✅ Start server
-app.listen(PORT, () => {
-  console.log(`✅ Server started on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(`✅ Server started on port ${PORT}`));

@@ -1,47 +1,50 @@
-import express from 'express';
-import nodemailer from 'nodemailer';
-import dotenv from 'dotenv';
+import express from "express";
+import dotenv from "dotenv";
+import brevo from "@getbrevo/brevo";
 
 dotenv.config();
 const router = express.Router();
 
 // POST /api/contact
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   const { name, email, subject, message } = req.body;
 
   if (!name || !email || !subject || !message) {
-    return res.status(400).json({ success: false, message: 'All fields required' });
+    return res
+      .status(400)
+      .json({ success: false, message: "All fields are required" });
   }
 
   try {
-    const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST,
-      port: process.env.EMAIL_PORT,
-      secure: false,
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
+    // ✅ Setup Brevo client
+    const apiInstance = new brevo.TransactionalEmailsApi();
+    apiInstance.setApiKey(
+      brevo.TransactionalEmailsApiApiKeys.apiKey,
+      process.env.BREVO_API_KEY
+    );
 
-    const mailOptions = {
-      from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER, // your inbox
+    // ✅ Prepare email content
+    const sendSmtpEmail = {
+      sender: { email: process.env.RECEIVER_EMAIL, name: "Portfolio Contact" },
+      to: [{ email: process.env.RECEIVER_EMAIL, name: "Arun Portfolio" }],
       subject: `New message from ${name} - ${subject}`,
-      text: `
-        Name: ${name}
-        Email: ${email}
-        Subject: ${subject}
-        Message: ${message}
+      htmlContent: `
+        <h3>New Contact Message</h3>
+        <p><b>Name:</b> ${name}</p>
+        <p><b>Email:</b> ${email}</p>
+        <p><b>Subject:</b> ${subject}</p>
+        <p><b>Message:</b><br>${message}</p>
       `,
     };
 
-    await transporter.sendMail(mailOptions);
-
-    return res.json({ success: true, message: 'Message sent successfully' });
-  } catch (err) {
-    console.error('Email error:', err);
-    return res.status(500).json({ success: false, message: 'Failed to send message' });
+    // ✅ Send email
+    await apiInstance.sendTransacEmail(sendSmtpEmail);
+    return res.json({ success: true, message: "Message sent successfully!" });
+  } catch (error) {
+    console.error("Brevo API error:", error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Failed to send email" });
   }
 });
 
